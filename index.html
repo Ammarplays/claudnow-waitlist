@@ -319,12 +319,7 @@
         </div>
 
         <div class="form-container" id="formContainer">
-            <form id="waitlistForm" name="waitlist" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-                <!-- Honeypot field for spam protection -->
-                <p style="display: none;">
-                    <label>Don't fill this out: <input name="bot-field"></label>
-                </p>
-                
+            <form id="waitlistForm">
                 <div class="form-group">
                     <label for="email">Email Address *</label>
                     <input type="email" id="email" name="email" placeholder="you@example.com" required>
@@ -339,19 +334,19 @@
                     <label>What will you use it for?</label>
                     <div class="checkbox-group">
                         <label class="checkbox-item" onclick="toggleCheckbox(this)">
-                            <input type="checkbox" name="usecase[]" value="personal">
+                            <input type="checkbox" name="usecase" value="personal">
                             🏠 Personal Assistant
                         </label>
                         <label class="checkbox-item" onclick="toggleCheckbox(this)">
-                            <input type="checkbox" name="usecase[]" value="work">
+                            <input type="checkbox" name="usecase" value="work">
                             💼 Work/Business
                         </label>
                         <label class="checkbox-item" onclick="toggleCheckbox(this)">
-                            <input type="checkbox" name="usecase[]" value="dev">
+                            <input type="checkbox" name="usecase" value="dev">
                             👨‍💻 Development/Coding
                         </label>
                         <label class="checkbox-item" onclick="toggleCheckbox(this)">
-                            <input type="checkbox" name="usecase[]" value="automation">
+                            <input type="checkbox" name="usecase" value="automation">
                             🤖 Automation
                         </label>
                     </div>
@@ -392,6 +387,16 @@
             el.classList.toggle('selected');
         }
 
+        // Load waitlist count on page load
+        async function loadCount() {
+            try {
+                const res = await fetch('/api/waitlist/count');
+                const data = await res.json();
+                document.getElementById('waitlistCount').textContent = data.count || 0;
+            } catch (e) {}
+        }
+        loadCount();
+
         // Handle form submission
         document.getElementById('waitlistForm').addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -400,30 +405,31 @@
             btn.disabled = true;
             btn.textContent = 'Joining...';
 
-            const form = e.target;
-            const formData = new FormData(form);
+            const formData = {
+                email: document.getElementById('email').value,
+                name: document.getElementById('name').value || null,
+                platform: document.getElementById('platform').value || null,
+                usecases: Array.from(document.querySelectorAll('input[name="usecase"]:checked')).map(c => c.value)
+            };
 
             try {
-                // Submit to Netlify Forms
-                const response = await fetch('/', {
+                const response = await fetch('/api/waitlist', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: new URLSearchParams(formData).toString()
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
                 });
 
-                if (response.ok) {
-                    // Show success
+                const data = await response.json();
+
+                if (data.success) {
                     document.getElementById('formContainer').style.display = 'none';
                     document.getElementById('successMessage').classList.add('show');
-
-                    // Update counter
-                    const counter = document.getElementById('waitlistCount');
-                    counter.textContent = parseInt(counter.textContent) + 1;
+                    loadCount();
                 } else {
-                    throw new Error('Form submission failed');
+                    throw new Error(data.error || 'Failed to join');
                 }
             } catch (error) {
-                alert('Something went wrong. Please try again!');
+                alert('Something went wrong: ' + error.message);
                 btn.disabled = false;
                 btn.textContent = 'Join the Waitlist 🚀';
             }
