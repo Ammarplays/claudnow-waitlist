@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join the Waitlist - ClawdNow</title>
+    <meta name="description" content="Get early access to ClawdNow - Your personal AI assistant in 60 seconds. No DevOps required.">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #16213e 100%);
+            min-height: 100vh;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            font-size: 32px;
+        }
+
+        .tagline {
+            color: rgba(255,255,255,0.6);
+            font-size: 14px;
+            margin-bottom: 48px;
+        }
+
+        h1 {
+            font-size: 42px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #fff 0%, #D97706 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .form-container {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 32px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 14px 16px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 10px;
+            color: #fff;
+            font-size: 16px;
+            transition: all 0.2s;
+        }
+
+        .form-group input::placeholder {
+            color: rgba(255,255,255,0.4);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #D97706;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .form-group select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.5)' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 20px;
+        }
+
+        .form-group select option {
+            background: #1a1a2e;
+            color: #fff;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 14px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 14px;
+        }
+
+        .checkbox-item:hover {
+            border-color: rgba(255,255,255,0.3);
+        }
+
+        .checkbox-item.selected {
+            background: rgba(217, 119, 6, 0.2);
+            border-color: #D97706;
+        }
+
+        .checkbox-item input {
+            display: none;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 16px 24px;
+            background: linear-gradient(135deg, #D97706 0%, #B45309 100%);
+            border: none;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(217, 119, 6, 0.3);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .feature {
+            padding: 16px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 12px;
+        }
+
+        .feature-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .feature-text {
+            font-size: 13px;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        .success-icon {
+            font-size: 64px;
+            margin-bottom: 16px;
+        }
+
+        .success-message h2 {
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+
+        .success-message p {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: rgba(255,255,255,0.4);
+            font-size: 13px;
+        }
+
+        .footer a {
+            color: #D97706;
+            text-decoration: none;
+        }
+
+        .counter {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(217, 119, 6, 0.15);
+            border-radius: 20px;
+            font-size: 14px;
+            color: #D97706;
+            margin-bottom: 24px;
+        }
+
+        .counter-dot {
+            width: 8px;
+            height: 8px;
+            background: #D97706;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        @media (max-width: 500px) {
+            h1 {
+                font-size: 32px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .checkbox-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <span class="logo-icon">🦞</span>
+            <span>ClawdNow</span>
+        </div>
+        <p class="tagline">Your Personal AI, Deployed in 60 Seconds</p>
+
+        <div class="counter">
+            <span class="counter-dot"></span>
+            <span id="waitlistCount">247</span> people on the waitlist
+        </div>
+
+        <h1>Get Early Access</h1>
+        <p class="subtitle">Be the first to deploy your own Clawdbot AI assistant. No DevOps, no hassle — just your AI, ready to help.</p>
+
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">⚡</div>
+                <div class="feature-text">1-Click Deploy</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">💬</div>
+                <div class="feature-text">WhatsApp, Telegram, Discord</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🔒</div>
+                <div class="feature-text">Your Data, Your Server</div>
+            </div>
+        </div>
+
+        <div class="form-container" id="formContainer">
+            <form id="waitlistForm" name="waitlist" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+                <!-- Honeypot field for spam protection -->
+                <p style="display: none;">
+                    <label>Don't fill this out: <input name="bot-field"></label>
+                </p>
+                
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="name">Name (optional)</label>
+                    <input type="text" id="name" name="name" placeholder="Your name">
+                </div>
+
+                <div class="form-group">
+                    <label>What will you use it for?</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-item" onclick="toggleCheckbox(this)">
+                            <input type="checkbox" name="usecase[]" value="personal">
+                            🏠 Personal Assistant
+                        </label>
+                        <label class="checkbox-item" onclick="toggleCheckbox(this)">
+                            <input type="checkbox" name="usecase[]" value="work">
+                            💼 Work/Business
+                        </label>
+                        <label class="checkbox-item" onclick="toggleCheckbox(this)">
+                            <input type="checkbox" name="usecase[]" value="dev">
+                            👨‍💻 Development/Coding
+                        </label>
+                        <label class="checkbox-item" onclick="toggleCheckbox(this)">
+                            <input type="checkbox" name="usecase[]" value="automation">
+                            🤖 Automation
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="platform">Preferred Chat Platform</label>
+                    <select id="platform" name="platform">
+                        <option value="">Select platform...</option>
+                        <option value="telegram">📨 Telegram</option>
+                        <option value="whatsapp">💬 WhatsApp</option>
+                        <option value="discord">🎮 Discord</option>
+                        <option value="slack">💼 Slack</option>
+                        <option value="signal">🔒 Signal</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn" id="submitBtn">
+                    Join the Waitlist 🚀
+                </button>
+            </form>
+        </div>
+
+        <div class="success-message" id="successMessage">
+            <div class="success-icon">🎉</div>
+            <h2>You're on the list!</h2>
+            <p>We'll email you when it's your turn. Keep an eye on your inbox!</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Questions? Email us at <a href="mailto:hello@clawdnow.com">hello@clawdnow.com</a></p>
+    </div>
+
+    <script>
+        function toggleCheckbox(el) {
+            el.classList.toggle('selected');
+        }
+
+        // Handle form submission
+        document.getElementById('waitlistForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const btn = document.getElementById('submitBtn');
+            btn.disabled = true;
+            btn.textContent = 'Joining...';
+
+            const form = e.target;
+            const formData = new FormData(form);
+
+            try {
+                // Submit to Netlify Forms
+                const response = await fetch('/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams(formData).toString()
+                });
+
+                if (response.ok) {
+                    // Show success
+                    document.getElementById('formContainer').style.display = 'none';
+                    document.getElementById('successMessage').classList.add('show');
+
+                    // Update counter
+                    const counter = document.getElementById('waitlistCount');
+                    counter.textContent = parseInt(counter.textContent) + 1;
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (error) {
+                alert('Something went wrong. Please try again!');
+                btn.disabled = false;
+                btn.textContent = 'Join the Waitlist 🚀';
+            }
+        });
+    </script>
+</body>
+</html>
