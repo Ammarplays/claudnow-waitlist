@@ -252,35 +252,41 @@
             position: relative;
             overflow: hidden;
             transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+            background: conic-gradient(
+                #F28C33 0deg 60deg,
+                #E67E22 60deg 120deg,
+                #D35400 120deg 180deg,
+                #C0392B 180deg 240deg,
+                #9B59B6 240deg 300deg,
+                #8E44AD 300deg 360deg
+            );
         }
 
-        .wheel-segment {
+        .wheel-labels {
             position: absolute;
-            width: 50%;
-            height: 50%;
             top: 0;
-            right: 0;
-            transform-origin: bottom left;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .wheel-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
             font-weight: 700;
-            font-size: 14px;
+            font-size: 16px;
             color: #fff;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            transform-origin: center center;
         }
 
-        .wheel-segment span {
-            transform: rotate(30deg) translateY(-40px);
-            display: block;
-        }
-
-        .wheel-segment:nth-child(1) { background: #F28C33; transform: rotate(0deg) skewY(-30deg); }
-        .wheel-segment:nth-child(2) { background: #E67E22; transform: rotate(60deg) skewY(-30deg); }
-        .wheel-segment:nth-child(3) { background: #D35400; transform: rotate(120deg) skewY(-30deg); }
-        .wheel-segment:nth-child(4) { background: #C0392B; transform: rotate(180deg) skewY(-30deg); }
-        .wheel-segment:nth-child(5) { background: #9B59B6; transform: rotate(240deg) skewY(-30deg); }
-        .wheel-segment:nth-child(6) { background: #8E44AD; transform: rotate(300deg) skewY(-30deg); }
+        .wheel-label:nth-child(1) { transform: rotate(30deg) translateY(-95px) rotate(-30deg); }
+        .wheel-label:nth-child(2) { transform: rotate(90deg) translateY(-95px) rotate(-90deg); }
+        .wheel-label:nth-child(3) { transform: rotate(150deg) translateY(-95px) rotate(-150deg); }
+        .wheel-label:nth-child(4) { transform: rotate(210deg) translateY(-95px) rotate(-210deg); }
+        .wheel-label:nth-child(5) { transform: rotate(270deg) translateY(-95px) rotate(-270deg); }
+        .wheel-label:nth-child(6) { transform: rotate(330deg) translateY(-95px) rotate(-330deg); }
 
         .wheel-pointer {
             position: absolute;
@@ -485,12 +491,14 @@
             <div class="wheel-container">
                 <div class="wheel-pointer"></div>
                 <div class="wheel" id="wheel">
-                    <div class="wheel-segment"><span>10%</span></div>
-                    <div class="wheel-segment"><span>20%</span></div>
-                    <div class="wheel-segment"><span>30%</span></div>
-                    <div class="wheel-segment"><span>40%</span></div>
-                    <div class="wheel-segment"><span>50%</span></div>
-                    <div class="wheel-segment"><span>100%</span></div>
+                    <div class="wheel-labels">
+                        <div class="wheel-label">10%</div>
+                        <div class="wheel-label">20%</div>
+                        <div class="wheel-label">30%</div>
+                        <div class="wheel-label">40%</div>
+                        <div class="wheel-label">50%</div>
+                        <div class="wheel-label">100%</div>
+                    </div>
                 </div>
                 <div class="wheel-center">🦞</div>
             </div>

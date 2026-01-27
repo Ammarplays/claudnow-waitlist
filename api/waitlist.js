@@ -54,14 +54,14 @@ module.exports = async (req, res) => {
                 return res.status(400).json({ success: false, error: 'Email is required' });
             }
 
-            // Check if exists
+            // Check if exists - reject duplicates
             const existing = await pool.query(
                 'SELECT id FROM waitlist WHERE email = $1',
                 [email]
             );
 
             if (existing.rows.length > 0) {
-                return res.json({ success: true, message: "You're already on the waitlist!" });
+                return res.status(400).json({ success: false, error: "This email is already on the waitlist!" });
             }
 
             // Insert without discount (will be set on spin)
