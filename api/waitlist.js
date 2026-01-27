@@ -5,22 +5,22 @@ const pool = new Pool({
     ssl: { rejectUnauthorized: false }
 });
 
-// Initialize table
+// Initialize database table
 async function initTable() {
     await pool.query(`
         CREATE TABLE IF NOT EXISTS waitlist (
             id SERIAL PRIMARY KEY,
             email VARCHAR(255) UNIQUE NOT NULL,
-            name VARCHAR(255),
             platform VARCHAR(50),
             usecases TEXT,
+            discount INTEGER,
+            discount_code VARCHAR(20),
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
     `);
 }
 
 module.exports = async (req, res) => {
-    // CORS
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -40,7 +40,7 @@ module.exports = async (req, res) => {
 
         // POST - add to waitlist
         if (req.method === 'POST') {
-            const { email, name, platform, usecases } = req.body;
+            const { email, platform, usecases } = req.body;
 
             if (!email) {
                 return res.status(400).json({ success: false, error: 'Email is required' });
@@ -56,10 +56,10 @@ module.exports = async (req, res) => {
                 return res.json({ success: true, message: "You're already on the waitlist!" });
             }
 
-            // Insert
+            // Insert without discount (will be set on spin)
             await pool.query(
-                'INSERT INTO waitlist (email, name, platform, usecases) VALUES ($1, $2, $3, $4)',
-                [email, name || null, platform || null, JSON.stringify(usecases || [])]
+                'INSERT INTO waitlist (email, platform, usecases) VALUES ($1, $2, $3)',
+                [email, platform || null, JSON.stringify(usecases || [])]
             );
 
             return res.json({ success: true, message: "You're on the list!" });

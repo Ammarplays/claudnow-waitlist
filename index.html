@@ -23,7 +23,6 @@
             color: #1E293B;
         }
 
-        /* Header Banner */
         .banner {
             background: #1E293B;
             color: #FFFFFF;
@@ -37,14 +36,12 @@
             color: #F28C33;
         }
 
-        /* Main Container */
         .container {
             max-width: 560px;
             margin: 0 auto;
             padding: 48px 24px;
         }
 
-        /* Logo */
         .logo {
             display: flex;
             align-items: center;
@@ -53,17 +50,9 @@
             margin-bottom: 32px;
         }
 
-        .logo-icon {
-            font-size: 36px;
-        }
+        .logo-icon { font-size: 36px; }
+        .logo-text { font-size: 24px; font-weight: 700; color: #1E293B; }
 
-        .logo-text {
-            font-size: 24px;
-            font-weight: 700;
-            color: #1E293B;
-        }
-
-        /* Hero */
         .hero {
             text-align: center;
             margin-bottom: 40px;
@@ -77,9 +66,7 @@
             line-height: 1.2;
         }
 
-        .hero h1 span {
-            color: #F28C33;
-        }
+        .hero h1 span { color: #F28C33; }
 
         .hero p {
             font-size: 16px;
@@ -87,7 +74,6 @@
             line-height: 1.6;
         }
 
-        /* Counter Badge */
         .counter {
             display: inline-flex;
             align-items: center;
@@ -114,7 +100,6 @@
             50% { opacity: 0.5; }
         }
 
-        /* Features */
         .features {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -128,27 +113,18 @@
             border-radius: 12px;
             padding: 20px 16px;
             text-align: center;
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
         }
 
-        .feature-icon {
-            font-size: 28px;
-            margin-bottom: 8px;
-        }
+        .feature-icon { font-size: 28px; margin-bottom: 8px; }
+        .feature-text { font-size: 13px; font-weight: 600; color: #1E293B; }
 
-        .feature-text {
-            font-size: 13px;
-            font-weight: 600;
-            color: #1E293B;
-        }
-
-        /* Form Card */
         .form-card {
             background: #FFFFFF;
             border: 1px solid #E2E8F0;
             border-radius: 12px;
             padding: 32px;
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
         }
 
         .form-group {
@@ -176,9 +152,7 @@
             transition: all 0.2s;
         }
 
-        .form-group input::placeholder {
-            color: #94A3B8;
-        }
+        .form-group input::placeholder { color: #94A3B8; }
 
         .form-group input:focus,
         .form-group select:focus {
@@ -196,7 +170,6 @@
             background-size: 20px;
         }
 
-        /* Checkbox Group */
         .checkbox-group {
             display: flex;
             flex-wrap: wrap;
@@ -216,11 +189,10 @@
             font-size: 14px;
             font-weight: 500;
             color: #64748B;
+            user-select: none;
         }
 
-        .checkbox-item:hover {
-            border-color: #F28C33;
-        }
+        .checkbox-item:hover { border-color: #F28C33; }
 
         .checkbox-item.selected {
             background: rgba(242, 140, 51, 0.1);
@@ -228,11 +200,8 @@
             color: #F28C33;
         }
 
-        .checkbox-item input {
-            display: none;
-        }
+        .checkbox-item input { display: none; }
 
-        /* Button */
         .btn {
             width: 100%;
             padding: 16px 24px;
@@ -259,35 +228,155 @@
             transform: none;
         }
 
-        /* Success Message */
-        .success-message {
+        /* Wheel Section */
+        .wheel-section {
+            display: none;
+            text-align: center;
+            padding: 32px;
+        }
+
+        .wheel-section.show { display: block; }
+
+        .wheel-container {
+            position: relative;
+            width: 280px;
+            height: 280px;
+            margin: 0 auto 24px;
+        }
+
+        .wheel {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 4px solid #1E293B;
+            position: relative;
+            overflow: hidden;
+            transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+        }
+
+        .wheel-segment {
+            position: absolute;
+            width: 50%;
+            height: 50%;
+            top: 0;
+            right: 0;
+            transform-origin: bottom left;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .wheel-segment span {
+            transform: rotate(30deg) translateY(-40px);
+            display: block;
+        }
+
+        .wheel-segment:nth-child(1) { background: #F28C33; transform: rotate(0deg) skewY(-30deg); }
+        .wheel-segment:nth-child(2) { background: #E67E22; transform: rotate(60deg) skewY(-30deg); }
+        .wheel-segment:nth-child(3) { background: #D35400; transform: rotate(120deg) skewY(-30deg); }
+        .wheel-segment:nth-child(4) { background: #C0392B; transform: rotate(180deg) skewY(-30deg); }
+        .wheel-segment:nth-child(5) { background: #9B59B6; transform: rotate(240deg) skewY(-30deg); }
+        .wheel-segment:nth-child(6) { background: #8E44AD; transform: rotate(300deg) skewY(-30deg); }
+
+        .wheel-pointer {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-top: 25px solid #1E293B;
+            z-index: 10;
+        }
+
+        .wheel-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: #1E293B;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            z-index: 5;
+        }
+
+        .spin-btn {
+            padding: 16px 48px;
+            background: #1E293B;
+            border: none;
+            border-radius: 8px;
+            color: #FFFFFF;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .spin-btn:hover {
+            background: #0F172A;
+            transform: scale(1.05);
+        }
+
+        .spin-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Result */
+        .result-section {
             display: none;
             text-align: center;
             padding: 48px 32px;
         }
 
-        .success-message.show {
-            display: block;
+        .result-section.show { display: block; }
+
+        .result-icon { font-size: 64px; margin-bottom: 16px; }
+
+        .result-section h2 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1E293B;
+            margin-bottom: 8px;
         }
 
-        .success-icon {
-            font-size: 64px;
+        .result-discount {
+            font-size: 48px;
+            font-weight: 700;
+            color: #F28C33;
             margin-bottom: 16px;
         }
 
-        .success-message h2 {
-            font-size: 24px;
-            font-weight: 700;
-            color: #1E293B;
-            margin-bottom: 12px;
-        }
-
-        .success-message p {
+        .result-section p {
             color: #64748B;
             font-size: 15px;
         }
 
-        /* Footer */
+        .result-code {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 12px 24px;
+            background: #F8FAFC;
+            border: 2px dashed #E2E8F0;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 18px;
+            font-weight: 700;
+            color: #1E293B;
+        }
+
         .footer {
             text-align: center;
             padding: 24px;
@@ -295,23 +384,12 @@
             font-size: 13px;
         }
 
-        /* Responsive */
         @media (max-width: 500px) {
-            .hero h1 {
-                font-size: 28px;
-            }
-
-            .features {
-                grid-template-columns: 1fr;
-            }
-
-            .checkbox-group {
-                flex-direction: column;
-            }
-
-            .form-card {
-                padding: 24px;
-            }
+            .hero h1 { font-size: 28px; }
+            .features { grid-template-columns: 1fr; }
+            .checkbox-group { flex-direction: column; }
+            .form-card, .wheel-section, .result-section { padding: 24px; }
+            .wheel-container { width: 240px; height: 240px; }
         }
     </style>
 </head>
@@ -350,6 +428,7 @@
             </div>
         </div>
 
+        <!-- Step 1: Form -->
         <div class="form-card" id="formContainer">
             <form id="waitlistForm">
                 <div class="form-group">
@@ -358,26 +437,21 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="name">Name <span style="color: #94A3B8; font-weight: 400;">(optional)</span></label>
-                    <input type="text" id="name" name="name" placeholder="Your name">
-                </div>
-
-                <div class="form-group">
                     <label>What will you use it for?</label>
-                    <div class="checkbox-group">
-                        <label class="checkbox-item" onclick="toggleCheckbox(this)">
+                    <div class="checkbox-group" id="usecaseGroup">
+                        <label class="checkbox-item">
                             <input type="checkbox" name="usecase" value="personal">
                             🏠 Personal
                         </label>
-                        <label class="checkbox-item" onclick="toggleCheckbox(this)">
+                        <label class="checkbox-item">
                             <input type="checkbox" name="usecase" value="work">
                             💼 Work
                         </label>
-                        <label class="checkbox-item" onclick="toggleCheckbox(this)">
+                        <label class="checkbox-item">
                             <input type="checkbox" name="usecase" value="dev">
                             👨‍💻 Dev
                         </label>
-                        <label class="checkbox-item" onclick="toggleCheckbox(this)">
+                        <label class="checkbox-item">
                             <input type="checkbox" name="usecase" value="automation">
                             🤖 Automation
                         </label>
@@ -398,15 +472,41 @@
                 </div>
 
                 <button type="submit" class="btn" id="submitBtn">
-                    Join the Waitlist →
+                    Join & Spin for Discount →
                 </button>
             </form>
         </div>
 
-        <div class="success-message" id="successMessage">
-            <div class="success-icon">🎉</div>
-            <h2>You're on the list!</h2>
-            <p>We'll notify you when it's your turn.</p>
+        <!-- Step 2: Wheel -->
+        <div class="wheel-section" id="wheelSection">
+            <h2 style="margin-bottom: 8px; font-size: 24px;">🎰 Spin to Win!</h2>
+            <p style="color: #64748B; margin-bottom: 24px;">Get an exclusive discount on your subscription</p>
+            
+            <div class="wheel-container">
+                <div class="wheel-pointer"></div>
+                <div class="wheel" id="wheel">
+                    <div class="wheel-segment"><span>10%</span></div>
+                    <div class="wheel-segment"><span>20%</span></div>
+                    <div class="wheel-segment"><span>30%</span></div>
+                    <div class="wheel-segment"><span>40%</span></div>
+                    <div class="wheel-segment"><span>50%</span></div>
+                    <div class="wheel-segment"><span>100%</span></div>
+                </div>
+                <div class="wheel-center">🦞</div>
+            </div>
+
+            <button class="spin-btn" id="spinBtn" onclick="spinWheel()">
+                🎲 SPIN THE WHEEL
+            </button>
+        </div>
+
+        <!-- Step 3: Result -->
+        <div class="result-section" id="resultSection">
+            <div class="result-icon">🎉</div>
+            <h2>Congratulations!</h2>
+            <div class="result-discount" id="resultDiscount">10% OFF</div>
+            <p>Your exclusive discount has been saved. We'll email you when it's time to claim it!</p>
+            <div class="result-code" id="resultCode">CLAWD-XXXX</div>
         </div>
     </div>
 
@@ -415,11 +515,19 @@
     </div>
 
     <script>
-        function toggleCheckbox(el) {
-            el.classList.toggle('selected');
-        }
+        let userEmail = '';
+        let spinResult = null;
 
-        // Load waitlist count on page load
+        // Checkbox toggle
+        document.querySelectorAll('.checkbox-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const checkbox = item.querySelector('input[type="checkbox"]');
+                checkbox.checked = !checkbox.checked;
+                item.classList.toggle('selected', checkbox.checked);
+            });
+        });
+
+        // Load waitlist count
         async function loadCount() {
             try {
                 const res = await fetch('/api/waitlist');
@@ -429,7 +537,7 @@
         }
         loadCount();
 
-        // Handle form submission
+        // Form submission
         document.getElementById('waitlistForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             
@@ -437,25 +545,23 @@
             btn.disabled = true;
             btn.textContent = 'Joining...';
 
-            const formData = {
-                email: document.getElementById('email').value,
-                name: document.getElementById('name').value || null,
-                platform: document.getElementById('platform').value || null,
-                usecases: Array.from(document.querySelectorAll('input[name="usecase"]:checked')).map(c => c.value)
-            };
+            userEmail = document.getElementById('email').value;
+            const usecases = Array.from(document.querySelectorAll('input[name="usecase"]:checked')).map(c => c.value);
+            const platform = document.getElementById('platform').value;
 
             try {
                 const response = await fetch('/api/waitlist', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(formData)
+                    body: JSON.stringify({ email: userEmail, platform, usecases })
                 });
 
                 const data = await response.json();
 
                 if (data.success) {
+                    // Show wheel
                     document.getElementById('formContainer').style.display = 'none';
-                    document.getElementById('successMessage').classList.add('show');
+                    document.getElementById('wheelSection').classList.add('show');
                     loadCount();
                 } else {
                     throw new Error(data.error || 'Failed to join');
@@ -463,9 +569,59 @@
             } catch (error) {
                 alert('Something went wrong: ' + error.message);
                 btn.disabled = false;
-                btn.textContent = 'Join the Waitlist →';
+                btn.textContent = 'Join & Spin for Discount →';
             }
         });
+
+        // Spin wheel
+        async function spinWheel() {
+            const btn = document.getElementById('spinBtn');
+            btn.disabled = true;
+            btn.textContent = '🎲 Spinning...';
+
+            try {
+                // Get result from backend
+                const response = await fetch('/api/spin', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: userEmail })
+                });
+
+                const data = await response.json();
+                
+                if (!data.success) {
+                    throw new Error(data.error || 'Spin failed');
+                }
+
+                spinResult = data;
+
+                // Calculate wheel rotation
+                const discountToSegment = { 10: 0, 20: 1, 30: 2, 40: 3, 50: 4, 100: 5 };
+                const segment = discountToSegment[data.discount];
+                const segmentAngle = 60;
+                const targetAngle = (segment * segmentAngle) + (segmentAngle / 2);
+                const spins = 5;
+                const finalRotation = (spins * 360) + (360 - targetAngle) + 30;
+
+                // Spin animation
+                const wheel = document.getElementById('wheel');
+                wheel.style.transform = `rotate(${finalRotation}deg)`;
+
+                // Show result after animation
+                setTimeout(() => {
+                    document.getElementById('wheelSection').classList.remove('show');
+                    document.getElementById('wheelSection').style.display = 'none';
+                    document.getElementById('resultDiscount').textContent = data.discount + '% OFF';
+                    document.getElementById('resultCode').textContent = data.code;
+                    document.getElementById('resultSection').classList.add('show');
+                }, 4500);
+
+            } catch (error) {
+                alert('Error: ' + error.message);
+                btn.disabled = false;
+                btn.textContent = '🎲 SPIN THE WHEEL';
+            }
+        }
     </script>
 </body>
 </html>
