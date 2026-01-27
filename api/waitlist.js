@@ -5,8 +5,9 @@ const pool = new Pool({
     ssl: { rejectUnauthorized: false }
 });
 
-// Initialize database table
+// Initialize database table + add new columns if missing
 async function initTable() {
+    // Create table if not exists
     await pool.query(`
         CREATE TABLE IF NOT EXISTS waitlist (
             id SERIAL PRIMARY KEY,
@@ -18,6 +19,13 @@ async function initTable() {
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
     `);
+    
+    // Add discount columns if they don't exist (for existing tables)
+    await pool.query(`
+        ALTER TABLE waitlist 
+        ADD COLUMN IF NOT EXISTS discount INTEGER,
+        ADD COLUMN IF NOT EXISTS discount_code VARCHAR(20)
+    `).catch(() => {}); // Ignore if already exists
 }
 
 module.exports = async (req, res) => {
