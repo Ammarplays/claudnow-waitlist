@@ -390,7 +390,7 @@
         // Load waitlist count on page load
         async function loadCount() {
             try {
-                const res = await fetch('/api/waitlist/count');
+                const res = await fetch('/api/waitlist');
                 const data = await res.json();
                 document.getElementById('waitlistCount').textContent = data.count || 0;
             } catch (e) {}
