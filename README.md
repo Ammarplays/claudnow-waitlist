@@ -1,4 +1,4 @@
-# ClawdNow Waitlist
+# MoltNow Waitlist
 
 Simple waitlist landing page with PostgreSQL backend.
 
